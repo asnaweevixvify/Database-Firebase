@@ -11,9 +11,9 @@ function App() {
     async function getEmployee(db){
       const empCol = collection(db,'employees')
       const empSnapshot = await getDocs(empCol)
-      const newItem = empSnapshot.docs.map(e=>{
-        return e.data()
-      })
+      const newItem = empSnapshot.docs.map(e=>({
+        ...e.data(),id:e.id
+      }))
       setData(newItem)
   }
   getEmployee(db)
@@ -33,6 +33,9 @@ function App() {
     setAge('')
     setEmail('')
   }
+  function delItem(id){
+    deleteDoc(doc(db,'employees',id))
+  }
   
   return (
     <div className='text-container'>
@@ -48,7 +51,7 @@ function App() {
             <h3>{e.name}</h3>
             <h4>{e.age}</h4>
             <h4>{e.email}</h4>
-            <button>ลบข้อมูล</button>
+            <button onClick={()=>delItem(e.id)}>ลบข้อมูล</button>
           </div>
         )
       })}
