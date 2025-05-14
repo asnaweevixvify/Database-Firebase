@@ -36,6 +36,16 @@ function App() {
   function delItem(id){
     deleteDoc(doc(db,'employees',id))
   }
+
+  // การแก้ไข doc  
+  //function getEditItem(newEditData){
+  //  const docref = doc(db,'bloglist',editIndex)
+  //  updateDoc(docref,{
+  //    text:newEditData.text,
+  //    des:newEditData.des,
+  //   name:newEditData.name
+  // })
+  //}
   
   return (
     <div className='text-container'>
